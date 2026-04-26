@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Formulario de informacion personal</h1>
-    <form th:action="@{/personal-info-save}" th: object="${personalInfo}" method="post">
+    <form th:action="@{/personal-info-save}" th:object="${personalInfo}" method="post">
         <div>
             <label for="firstName">Nombre:</label>
             <input type="text" id="firstName" th:field="*{firstName}">

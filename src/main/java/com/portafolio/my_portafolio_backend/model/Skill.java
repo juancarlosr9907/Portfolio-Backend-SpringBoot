@@ -1,6 +1,11 @@
 package com.portafolio.my_portafolio_backend.model;
 
 
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +16,18 @@ import lombok.NoArgsConstructor;
 
 public class Skill {
     private Long id;
-    private String name; // Ej: "Java", "HTML", "CSS"
-    private Integer levelPercentage; // Ej: 90, 85 (para barras de progreso)
-    private String iconClass;// Ej: "fab fa-java" para FontAwesome
-    private Long personalInfoId; // Clave foránea a PersonalInfo
+
+
+    @NotBlank(message = "El nombre de la habilidad no puede estar vacío")
+    private String name;
+
+    @NotNull(message = "El porcentaje no puede ser nulo")
+    @Min(value = 0, message = "El porcentaje debe ser igual o mayor a 0")
+    @Max(value = 100, message = "El porcentaje debe ser igual o menor a 100")//Todo esto es la validaciones para porcentaje
+    private Integer levelPercentage;
+
+    @NotBlank (message = "La clase del icono no puede estar vacía")
+    private String iconClass;
+
+    private Long personalInfoId;// esta no se pone nada por que el id es autoincrementable, solo se valora lo que se introduce
 }
